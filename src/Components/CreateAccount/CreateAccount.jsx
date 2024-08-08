@@ -17,6 +17,9 @@ const CreateAccount = () => {
 
     const CreateAccountHandler = async (e) => {
         try {
+            if (userPassword !== userConfirmedPassword) {
+                setError('Passowrds must match')
+            }
             if (userEmail && userPassword && userConfirmedPassword && userPassword === userConfirmedPassword) {
                 await createUserWithEmailAndPassword(auth, userEmail, userConfirmedPassword)
                 console.log('UserAccount Created Successfully');
@@ -26,7 +29,7 @@ const CreateAccount = () => {
             }
 
         } catch (error) {
-            setError(error)
+            setError(error.message)
 
         }
     }
@@ -51,6 +54,7 @@ const CreateAccount = () => {
                                         onFocus={() => setIsFocused(true)}
                                         onBlur={() => setIsFocused(false)}
                                         onChange={(e) => setUserEmail(e.target.value)}
+                                        required
                                     />
                                 </div>
                             </div>
@@ -62,6 +66,7 @@ const CreateAccount = () => {
                                         onFocus={() => setIsFocused(true)}
                                         onBlur={() => setIsFocused(false)}
                                         onChange={(e) => setUserPassword(e.target.value)}
+                                        required
                                     />
                                 </div>
                             </div>
@@ -73,6 +78,7 @@ const CreateAccount = () => {
                                         onFocus={() => setIsFocused(true)}
                                         onBlur={() => setIsFocused(false)}
                                         onChange={(e) => setUserConfirmedPassword(e.target.value)}
+                                        required
                                     />
                                 </div>
                             </div>

@@ -78,14 +78,15 @@ form >div ._ ion-icon{
 form > div ._ input{
     height: 45px;
     width: 100%;
+    transition: box-shadow 0.2s ease; /* Smooth transition on focus */
 }
 form >div ._ input:focus{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     outline: none;
 }
 ._ input::placeholder{
     padding-left: 35px;
     font-family: 'Instrument Sans';
-    font-size: 20px;
 }
 /* .conPass{
     padding-bottom: 20px;

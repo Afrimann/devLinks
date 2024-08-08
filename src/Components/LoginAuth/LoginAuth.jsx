@@ -16,12 +16,15 @@ const LoginAuth = () => {
 
     const loginAuthHandler = async (e) => {
         try {
+            if (!userEmail || !userPassword) {
+                setError('Fill in all the fields')
+            }
             await signInWithEmailAndPassword(auth, userEmail, userPassword)
             console.log('User Logged In Successfully');
             alert('Login Successful')
 
         } catch (error) {
-            setError(error)
+            setError(error.message)
         }
     }
 
@@ -66,8 +69,10 @@ const LoginAuth = () => {
                                     type='button'
                                     onClick={loginAuthHandler}
                                     className='lgButton'
-                                ><span>Login</span>
+                                    >
+                                <span>Login</span>
                                 </button>
+                                <p>{error}</p>
                             </div>
                             <div className="createAccount">
                                 <a href="#"><Link to='/createAccount'>Don't have an account? Create account</Link></a>
