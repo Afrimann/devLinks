@@ -1,0 +1,117 @@
+.login {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    margin: auto auto;
+    height: 600px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.container .logo {
+    position: absolute;
+    left: 34%;
+}
+
+.loginForm {
+    padding: 40px;
+    height: 500px;
+    width: 100%;
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    border-radius: 20px;
+
+}
+
+.formHead {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.formHead span:nth-child(1){
+    font-family: 'Instrument Sans';
+    font-weight: 700;
+    font-size: 20px;
+}
+.formHead span:nth-child(2){
+    font-family: 'Instrument Sans';
+    font-weight: 300;
+    font-size: 16px;
+    color: #737373;
+}
+.formHead span:nth-child(1) {
+    font-size: 30px;
+}
+/* 
+.formHead span {
+    outline: 1px solid red;
+} */
+
+.form{
+    margin-top: 50px;
+}
+form .input2{
+    margin-top: 30px;
+}
+form > div ._{
+    margin-top: 5px;
+    position: relative;
+}
+label{
+    padding-bottom: 30px;
+    font-family: 'Instrument Sans';
+}
+form >div ._ ion-icon{
+    position: absolute;
+    left: 10px;
+    top: 15px;
+}
+form > div ._ input{
+    height: 45px;
+    width: 100%;
+}
+form >div ._ input:focus{
+    outline: none;
+}
+._ input::placeholder{
+    padding-left: 35px;
+    font-family: 'Instrument Sans';
+    font-size: 20px;
+}
+/* .conPass{
+    padding-bottom: 20px;
+} */
+.button{
+    margin-top: 25px;
+}
+a{
+    text-align: center;
+}
+.createAccount{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    font-family: 'Instrument Sans';
+    padding-bottom: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #888888;
+}
+
+.condition{
+    font-family: 'Instrument Sans';
+    font-weight: 200;
+    font-size: 13px;
+    margin-top: 10px;
+}       

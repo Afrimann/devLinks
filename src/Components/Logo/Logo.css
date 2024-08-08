@@ -1,0 +1,10 @@
+.logo{
+    display: flex;
+    gap: 5px;
+}
+.logoName span{
+    color: #333333;
+    font-size: 40px;
+    font-weight: 700;
+    font-family: 'Instrument Sans';
+}
