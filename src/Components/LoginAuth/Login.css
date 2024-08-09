@@ -5,114 +5,150 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #f5f5f5;
+    /* Optional: a background color for the page */
 }
 
 .container {
     margin: auto auto;
-    height: 600px;
     width: 500px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    /* Center the content horizontally */
     position: relative;
 }
 
 .container .logo {
     position: absolute;
-    left: 34%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .loginForm {
-    padding: 40px;
-    height: 500px;
     width: 100%;
     background-color: #fff;
-    position: absolute;
-    bottom: 0;
+    padding: 40px;
     border-radius: 20px;
-
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
 }
 
+/* Form styling */
 .formHead {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: flex-start; /* Aligns text to the left */
+
 }
-.formHead span:nth-child(1){
+
+.formHead span:nth-child(1) {
     font-family: 'Instrument Sans';
     font-weight: 700;
-    font-size: 20px;
+    font-size: 30px;
 }
-.formHead span:nth-child(2){
+
+.formHead span:nth-child(2) {
     font-family: 'Instrument Sans';
     font-weight: 300;
     font-size: 16px;
     color: #737373;
 }
-.formHead span:nth-child(1) {
-    font-size: 30px;
-}
-/* 
-.formHead span {
-    outline: 1px solid red;
-} */
 
-.form{
-    margin-top: 50px;
+.form {
+    margin-top: 30px;
+    width: 100%;
 }
-form .input2{
+
+.input1,
+.input2 {
     margin-top: 30px;
 }
-form > div ._{
+
+label {
+    padding-bottom: 10px;
+    font-family: 'Instrument Sans';
+}
+
+form>div ._ {
     margin-top: 5px;
     position: relative;
 }
-label{
-    padding-bottom: 30px;
-    font-family: 'Instrument Sans';
-}
-form >div ._ ion-icon{
+
+form>div ._ ion-icon {
     position: absolute;
     left: 10px;
-    top: 15px;
+    top: 50%;
+    transform: translateY(-50%);
 }
-form > div ._ input{
+
+form>div ._ input {
     height: 45px;
     width: 100%;
-    transition: box-shadow 0.2s ease; /* Smooth transition on focus */
+    padding-left: 35px;
+    /* Offset padding to match icon placement */
+    transition: box-shadow 0.2s ease;
+    font-family: 'Instrument Sans';
+    transition: border 0.3s ease;
 }
-form >div ._ input:focus{
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+form>div ._ input:focus {
+    box-shadow: 0 8px 16px r2ba(0, 0, 0, 0.2);
     outline: none;
 }
-._ input::placeholder{
-    padding-left: 35px;
-    font-family: 'Instrument Sans';
-}
-/* .conPass{
-    padding-bottom: 20px;
-} */
-.button{
+
+.button {
     margin-top: 25px;
+    width: 100%;
 }
-a{
-    text-align: center;
+
+.lgButton {
+    width: 100%;
+    height: 45px;
+    background-color: #633CFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Instrument Sans';
+    font-size: 16px;
+    transition: background-color 0.2s ease;
 }
-.createAccount{
+
+.lgButton:hover {
+    background-color: #4e25f5;
+}
+
+.createAccount {
     margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    outline: none;
     font-family: 'Instrument Sans';
-    padding-bottom: 20px;
     font-size: 16px;
     font-weight: 400;
     color: #888888;
 }
 
-.condition{
-    font-family: 'Instrument Sans';
-    font-weight: 200;
-    font-size: 13px;
-    margin-top: 10px;
-}       
+.createAccount a {
+    color: #633CFF;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.createAccount a:hover {
+    text-decoration: underline;
+}
+p{
+    text-align: left;
+}
+.empty{
+    border: 1px solid Red;
+}
+.empty:focus{
+    border-color: black;
+}

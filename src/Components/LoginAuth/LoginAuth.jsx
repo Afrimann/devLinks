@@ -12,22 +12,45 @@ const LoginAuth = () => {
     const [userEmail, setUserEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
     const [error, setError] = useState('')
+    const [err,setErr] = useState('')
+    const [isEmpty,setIsEmpty] = useState(false)
     const navigate = useNavigate()
 
     const loginAuthHandler = async (e) => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
         try {
-            if (!userEmail || !userPassword) {
-                setError('Fill in all the fields')
+            if (!userEmail) {
+                setError('Email is required');
+                setIsEmpty(true);
+                return;
+            } else if (!emailRegex.test(userEmail)) {
+                setError('Invalid email format');
+                setIsEmpty(true);
+                return;
             }
-            await signInWithEmailAndPassword(auth, userEmail, userPassword)
+    
+            if (!userPassword) {
+                setError('Password is required');
+                setIsEmpty(true);
+                return;
+            } else if (userPassword.length < 8) {
+                setError('Password must be at least 8 characters');
+                setIsEmpty(true);
+                return;
+            }
+    
+            // If all validations pass
+            setIsEmpty(false);
+            await signInWithEmailAndPassword(auth, userEmail, userPassword);
             console.log('User Logged In Successfully');
-            alert('Login Successful')
-
+            alert('Login Successful');
+    
         } catch (error) {
-            setError(error.message)
+            setError(error.message);
         }
-    }
-
+    };
+    
 
     return (
         <div className='login'>
@@ -45,7 +68,10 @@ const LoginAuth = () => {
                                 <label htmlFor="email">Email Address</label>
                                 <div className="_">
                                     {!isfocused && !userEmail && <ion-icon name="mail-outline"></ion-icon>}
-                                    <input type="email" placeholder={isfocused ? '' : 'e.g. alex@email.com'}
+                                    <input 
+                                    type="email"  
+                                    placeholder={isfocused ? '' : 'e.g. alex@email.com'}
+                                    className= {isEmpty ? 'empty' : ''}
                                         onFocus={() => setIsFocused(true)}
                                         onBlur={() => setIsFocused(false)}
                                         onChange={(e) => setUserEmail(e.target.value)}
@@ -56,7 +82,10 @@ const LoginAuth = () => {
                                 <label htmlFor="password">Password</label>
                                 <div className="_">
                                     {!isfocused && !userPassword && <ion-icon name="mail-outline"></ion-icon>}
-                                    <input type="password" placeholder={isfocused ? '' : 'Enter your password'}
+                                    <input 
+                                    type="password" 
+                                    placeholder={isfocused ? '' : 'Enter your password'}
+                                    className= {isEmpty ? 'empty' : ''}
                                         onFocus={() => setIsFocused(true)}
                                         onBlur={() => setIsFocused(false)}
                                         onChange={(e) => setUserPassword(e.target.value)}

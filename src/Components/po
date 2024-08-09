@@ -1,0 +1,14 @@
+{
+    "workbench.colorTheme": "Visual Studio Dark - C++",
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "editor.fontSize": 11,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "workbench.sideBar.location": "right",
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.mouseWheelZoom": true,
+    "window.menuBarVisibility": "visible"
+}
