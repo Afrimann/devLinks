@@ -59,7 +59,7 @@ const CreateAccount = () => {
         { label: 'Create Password', type: 'password', placeholder: 'Enter your password', value: userPassword, setValue: setUserPassword },
         { label: 'Confirm Password', type: 'password', placeholder: 'Enter your password', value: userConfirmedPassword, setValue: setUserConfirmedPassword }
     ];
-    
+    // edit the ion-icon for pasword , it's that of email that's there for now
     return (
         <div className='login'>
             <div className="container">
