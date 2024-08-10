@@ -1,11 +1,13 @@
 import React from 'react'
 import './Logo.css'
+import logoVector from '../Images/logoVector.png'
 
-const Logo = () => {
+
+const Logo = ({centered}) => {
   return (
-    <div className='logo'>
+    <div className={`logo ${centered ? 'centered' : ''}`}>
       <div className="logoVector">
-        <img src="" alt="" />
+        <img src={logoVector} alt="" />
       </div>
       <div className="logoName">
         <span>devlinks</span>

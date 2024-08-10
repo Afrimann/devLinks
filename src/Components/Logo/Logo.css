@@ -1,10 +1,20 @@
-.logo{
+.logo {
     display: flex;
     gap: 5px;
+    align-items: center;
+    justify-content: center;
 }
-.logoName span{
+
+.logoName span {
     color: #333333;
     font-size: 40px;
     font-weight: 700;
     font-family: 'Instrument Sans';
+}
+
+.logo.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }

@@ -3,7 +3,8 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Login from './Components/LoginAuth/LoginAuth.jsx'
 import CreateAccount from './Components/CreateAccount/CreateAccount.jsx'
-import Dashboard from './Components/Dashboard.jsx'
+import Dashboard from './Components/Dashboard/Dashboard.jsx'
+
 const App = () => {
   return (
     <div className='app'>

@@ -44,7 +44,9 @@ const LoginAuth = () => {
             setIsEmpty(false);
             await signInWithEmailAndPassword(auth, userEmail, userPassword);
             console.log('User Logged In Successfully');
-            alert('Login Successful');
+            navigate('/dashboard',{
+                state : {}
+            })
     
         } catch (error) {
             setError(error.message);
