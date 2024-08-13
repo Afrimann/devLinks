@@ -8,6 +8,8 @@ import NewLink from '../Modals/NewLink/NewLink.jsx';
 const Dashboard = () => {
   const [newLinks, setNewLinks] = useState([]);
   const [platforms, setPlatforms] = useState({});
+  const [showEditProfile, setShowEditProfile] = useState(false)
+  const [showEditLink, setShowEditLink] = useState(true)
 
   const handleAddLink = () => {
     if (newLinks.length < 4) {
@@ -30,10 +32,18 @@ const Dashboard = () => {
 
   const hasLinks = newLinks.length > 0;
 
+  const showProfile = () => {
+    setShowEditLink(false)
+    setShowEditProfile(true)
+  }
+  const showLink = () => {
+    setShowEditLink(true)
+    setShowEditProfile(false)
+  }
   return (
     <div className='dashboard'>
       <div className="header">
-        <Header />
+        <Header showProfile={showProfile} showLink={showLink} />
       </div>
       <div className="dashboardContainer">
         <div className="leftSide">
@@ -45,7 +55,14 @@ const Dashboard = () => {
             </div>
           ))}
         </div>
-        <div className="rightSide">
+        {showEditProfile && <div className="profileRightSide">
+          <div className="subRow1">
+            <p>Profile Details</p>
+            <p>Add your details to create a personal touch to your profile</p>
+          </div>
+        </div>}
+
+        {showEditLink && <div className="rightSide">
           <div className="rowUp">
             <div className='subRow1'>
               <p>Customize your links</p>
@@ -86,7 +103,7 @@ const Dashboard = () => {
               <button disabled={!hasLinks}>Save</button> {/* Disable if no links */}
             </div>
           </div>
-        </div>
+        </div>}
       </div>
     </div>
   )

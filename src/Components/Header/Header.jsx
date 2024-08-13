@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import logoVector from '../Images/logoVector.png'
 
 
-const Header = () => {
+const Header = ({showProfile,showLink}) => {
     const [isActive,setIsActive] = useState(true)
 
     useEffect(() => {
@@ -24,13 +24,13 @@ const Header = () => {
                 </div>
                 <div className="headerNav">
                     <nav>
-                        <li>
+                        <li onClick={showLink}>
                             <img src="" alt="" />
                             <Link className={isActive ? 'linkActive' : ''}>Links</Link>
                         </li>
-                        <li>
+                        <li onClick={showProfile}>
                             <img src="" alt="" />
-                            <Link>Profile Details</Link>
+                            <Link >Profile Details</Link>
                         </li>
                     </nav>
                 </div>
