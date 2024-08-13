@@ -1,0 +1,72 @@
+.newLink {
+    background-color: #FAFAFA;
+    height: 220px;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.linkHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.linkNo {
+    display: flex;
+    align-items: center;
+}
+
+.linkNo .number {
+    font-family: 'Instrument Sans';
+}
+
+.vector_ {
+    margin-right: 10px;
+}
+
+.linkDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.linkDetails form div {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    /* gap: 2px; */
+}
+
+.linkDetails form div label {
+    font-family: 'Instrument Sans';
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.linkDetails select,
+.linkDetails input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    font-family: 'Instrument Sans';
+}
+
+.remove {
+    font-family: 'Instrument Sans';
+    font-size: 14px;
+    color: #D9D9D9;
+}
+
+button {
+    background: none;
+    border: none;
+    color: #633CFF;
+    cursor: pointer;
+    font-family: 'Instrument Sans';
+    font-weight: bold;
+}

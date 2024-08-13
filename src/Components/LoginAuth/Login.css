@@ -93,11 +93,11 @@ form>div ._ input {
     /* Offset padding to match icon placement */
     transition: box-shadow 0.2s ease;
     font-family: 'Instrument Sans';
-    transition: border 0.3s ease;
+    transition: box-shadow 0.3s ease;
 }
 
 form>div ._ input:focus {
-    box-shadow: 0 8px 16px r2ba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     outline: none;
 }
 
