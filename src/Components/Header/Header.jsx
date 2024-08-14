@@ -5,12 +5,22 @@ import { Link } from 'react-router-dom'
 import logoVector from '../Images/logoVector.png'
 
 
-const Header = ({showProfile,showLink}) => {
-    const [isActive,setIsActive] = useState(true)
+const Header = ({ showProfile, showLink }) => {
+    const [isLinkActive, setIsLinkActive] = useState(true)
+    const [isProfileActive, setIsProfileActive] = useState(false)
 
-    useEffect(() => {
-        setIsActive(true)
-    }, [])
+    // useEffect(() => {
+    //     setIsActive(true)
+    // }, [])
+    const handleProfileActive = () => {
+        setIsLinkActive(false)
+        setIsProfileActive(true)
+    }
+    const handleLinkActive = () => {
+        setIsProfileActive(false)
+        setIsLinkActive(true)
+    }
+
     return (
         <div className='header'>
             <div className="headerContainer">
@@ -26,11 +36,15 @@ const Header = ({showProfile,showLink}) => {
                     <nav>
                         <li onClick={showLink}>
                             <img src="" alt="" />
-                            <Link className={isActive ? 'linkActive' : ''}>Links</Link>
+                            <Link
+                                onClick={handleLinkActive}
+                                className={isLinkActive ? 'linkActive' : ''}>Links</Link>
                         </li>
                         <li onClick={showProfile}>
                             <img src="" alt="" />
-                            <Link >Profile Details</Link>
+                            <Link onClick={
+                                handleProfileActive
+                            } className={isProfileActive ? 'linkActive' : ''} >Profile Details</Link>
                         </li>
                     </nav>
                 </div>

@@ -4,6 +4,7 @@ import './Dashboard.css';
 import phoneMockUp from '../Images/preview-section.png';
 import startVector from '../Images/startVector.png';
 import NewLink from '../Modals/NewLink/NewLink.jsx';
+import ProfileDetails from './ProfileDetails.jsx';
 
 const Dashboard = () => {
   const [newLinks, setNewLinks] = useState([]);
@@ -55,13 +56,7 @@ const Dashboard = () => {
             </div>
           ))}
         </div>
-        {showEditProfile && <div className="profileRightSide">
-          <div className="subRow1">
-            <p>Profile Details</p>
-            <p>Add your details to create a personal touch to your profile</p>
-          </div>
-        </div>}
-
+        {showEditProfile && <ProfileDetails />}
         {showEditLink && <div className="rightSide">
           <div className="rowUp">
             <div className='subRow1'>

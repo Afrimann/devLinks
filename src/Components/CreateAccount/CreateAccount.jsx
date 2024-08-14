@@ -49,6 +49,7 @@ const CreateAccount = () => {
             await createUserWithEmailAndPassword(auth, userEmail, userPassword);
             console.log('User Account Created Successfully');
             navigate('/');
+            
         } catch (error) {
             setError(error.message);
         }
