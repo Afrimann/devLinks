@@ -13,8 +13,7 @@ const CreateAccount = () => {
     const [userPassword, setUserPassword] = useState('')
     const [userConfirmedPassword, setUserConfirmedPassword] = useState('')
     const [error, setError] = useState('')
-    const [err,setErr] = useState('')
-    const [isEmpty,setIsEmpty] = useState(false)
+    const [isEmpty, setIsEmpty] = useState(false)
     const navigate = useNavigate()
 
     const validateInputs = () => {
@@ -49,7 +48,7 @@ const CreateAccount = () => {
             await createUserWithEmailAndPassword(auth, userEmail, userPassword);
             console.log('User Account Created Successfully');
             navigate('/');
-            
+
         } catch (error) {
             setError(error.message);
         }
@@ -70,7 +69,7 @@ const CreateAccount = () => {
                         <span>Create account</span>
                         <span>Let’s get you started sharing your links!</span>
                     </div>
-    
+
                     <div className="form">
                         <form>
                             {inputFields.map((field, index) => (
@@ -79,7 +78,7 @@ const CreateAccount = () => {
                                     <div className="_">
                                         {!isfocused && !field.value && <ion-icon name="mail-outline"></ion-icon>}
                                         <input
-                                            className={isEmpty? 'empty' : ''}
+                                            className={isEmpty ? 'empty' : ''}
                                             type={field.type}
                                             placeholder={isfocused ? '' : field.placeholder}
                                             onFocus={() => setIsFocused(true)}
@@ -112,7 +111,7 @@ const CreateAccount = () => {
             </div>
         </div>
     );
-    
+
 }
 
 export default CreateAccount
