@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import Login from './Components/LoginAuth/LoginAuth.jsx'
 import CreateAccount from './Components/CreateAccount/CreateAccount.jsx'
 import Dashboard from './Components/Dashboard/Dashboard.jsx'
+import Preview from './Components/Preview/Preview.jsx'
 
 const App = () => {
   return (
@@ -11,7 +12,8 @@ const App = () => {
       <Routes>
         <Route path='' element ={<Login/>} />
         <Route path='createAccount' element = {<CreateAccount/>}/>
-        <Route path='dashboard' element = {<Dashboard/>} />
+        <Route path='dashboard' element = {<Dashboard/>} /> 
+        <Route path='preview' element = {<Preview/>} /> 
 
       </Routes>
 

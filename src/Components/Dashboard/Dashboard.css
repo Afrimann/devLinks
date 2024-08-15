@@ -47,9 +47,28 @@
     border-radius: 50%;
 }
 
+
 .square {
-    border-radius: 8px;
-}
+    position: absolute; /* Ensure positioning is relative to the phone mockup */
+    background-color: black; /* Set background color to black */
+    color: white; /* Set text color to white */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Space between items */
+    padding: 0 10px; /* Add some padding */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    height: 33px; /* Match height from the previous example */
+    width: 180px; /* Match width from the previous example */
+    cursor: pointer;
+    font-family: 'Instrument Sans';
+  }
+  
+  /* Style for the right arrow */
+  .square ion-icon {
+    width: 16px; /* Adjust width as needed */
+    height: 16px; /* Adjust height as needed */
+  }
+  
 
 /* Right-side styling */
 .rightSide {

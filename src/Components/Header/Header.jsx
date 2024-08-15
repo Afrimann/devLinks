@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './Header.css'
 import Logo from '../Logo/Logo'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logoVector from '../Images/logoVector.png'
 
-
-const Header = ({ showProfile, showLink }) => {
+const Header = ({ showProfile, showLink, handlePreview }) => {
     const [isLinkActive, setIsLinkActive] = useState(true)
     const [isProfileActive, setIsProfileActive] = useState(false)
+    const navigate = useNavigate()
 
     // useEffect(() => {
     //     setIsActive(true)
@@ -20,7 +20,11 @@ const Header = ({ showProfile, showLink }) => {
         setIsProfileActive(false)
         setIsLinkActive(true)
     }
-
+    // const handlePreviewNavigate = () => {
+    //     navigate('/preview',{
+    //         state : {platforms,savedPlatforms,links}
+    //     })
+    
     return (
         <div className='header'>
             <div className="headerContainer">
@@ -48,7 +52,9 @@ const Header = ({ showProfile, showLink }) => {
                         </li>
                     </nav>
                 </div>
-                <button>Preview</button>
+                <button
+                onClick={handlePreview}
+                >Preview</button>
 
             </div>
         </div>

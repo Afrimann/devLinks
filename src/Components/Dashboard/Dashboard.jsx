@@ -1,107 +1,166 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 import Header from '../Header/Header';
 import './Dashboard.css';
 import phoneMockUp from '../Images/preview-section.png';
 import startVector from '../Images/startVector.png';
 import NewLink from '../Modals/NewLink/NewLink.jsx';
 import ProfileDetails from './ProfileDetails.jsx';
+import Preview from '../Preview/Preview.jsx';
 
 const Dashboard = () => {
   const [newLinks, setNewLinks] = useState([]);
   const [platforms, setPlatforms] = useState({});
-  const [showEditProfile, setShowEditProfile] = useState(false)
-  const [showEditLink, setShowEditLink] = useState(true)
+  const [savedPlatforms, setSavedPlatforms] = useState({});
+  const [links, setLinks] = useState({}); // New state to store links
+  const [showEditProfile, setShowEditProfile] = useState(false);
+  const [showEditLink, setShowEditLink] = useState(true);
+  const navigate = useNavigate();
+
+  const handlePreview = () => {
+    // Save savedPlatforms to local storage
+    localStorage.setItem('savedPlatforms', JSON.stringify(savedPlatforms));
+    navigate('/preview', {
+      state : {}
+    })// Navigate to the preview component
+  };
 
   const handleAddLink = () => {
-    if (newLinks.length < 4) {
-      setNewLinks([...newLinks, {}]);
+    if (newLinks.length < 5) {
+      setNewLinks([...newLinks, { id: newLinks.length, platform: '', link: '' }]);
     }
   };
 
-  const handleRemoveLink = (index) => {
-    setNewLinks(newLinks.filter((_, i) => i !== index));
-    setPlatforms((prev) => {
-      const updatedPlatforms = { ...prev };
-      delete updatedPlatforms[index];
-      return updatedPlatforms;
+  const handleRemoveLink = (id) => {
+    const updatedLinks = newLinks.filter(link => link.id !== id);
+    setNewLinks(updatedLinks);
+
+    const updatedPlatforms = { ...platforms };
+    delete updatedPlatforms[id];
+    setPlatforms(updatedPlatforms);
+
+    const updatedSavedPlatforms = { ...savedPlatforms };
+    delete updatedSavedPlatforms[id];
+    setSavedPlatforms(updatedSavedPlatforms);
+
+    // Remove link from links state
+    const updatedLinksState = { ...links };
+    delete updatedLinksState[id];
+    setLinks(updatedLinksState);
+  };
+
+  const handlePlatformChange = (id, platform, link) => {
+    setPlatforms((prev) => ({ ...prev, [id]: platform }));
+    setLinks((prev) => ({ ...prev, [id]: link })); // Store the link
+  };
+
+  const handleSave = () => {
+    const platformsToSave = newLinks.reduce((acc, link) => {
+      if (platforms[link.id]) {
+        acc[link.id] = platforms[link.id]; // Save only if platform is defined
+      }
+      return acc;
+    }, {});
+    setSavedPlatforms(platformsToSave);
+  };
+
+  const copyToClipboard = (link) => {
+    navigator.clipboard.writeText(link).then(() => {
+      alert('Link copied to clipboard!');
     });
   };
 
-  const handlePlatformChange = (index, platform) => {
-    setPlatforms((prev) => ({ ...prev, [index]: platform }));
+  const openLink = (id) => {
+    const link = links[id];
+    if (link) {
+      window.open(link, '_blank'); // Open the link in a new tab
+      copyToClipboard(link); // Copy the link to clipboard
+    }
   };
 
   const hasLinks = newLinks.length > 0;
 
   const showProfile = () => {
-    setShowEditLink(false)
-    setShowEditProfile(true)
-  }
+    setShowEditLink(false);
+    setShowEditProfile(true);
+  };
+
   const showLink = () => {
-    setShowEditLink(true)
-    setShowEditProfile(false)
-  }
+    setShowEditLink(true);
+    setShowEditProfile(false);
+  };
+
   return (
     <div className='dashboard'>
       <div className="header">
-        <Header showProfile={showProfile} showLink={showLink} />
+        <Header showProfile={showProfile} showLink={showLink} handlePreview = {handlePreview}/>
       </div>
       <div className="dashboardContainer">
         <div className="leftSide">
           <img src={phoneMockUp} alt="Phone Mockup" />
-          {/* Circle and Square Divs */}
-          {Object.values(platforms).map((platform, idx) => (
-            <div key={idx} className="square" style={{ top: `${246 + idx * 50}px`, left: '190px', width: '170px', height: '33px', backgroundColor: '#f0f0f0' }}>
-              {platform}
-            </div>
-          ))}
+          {/* Render saved platforms in the rectangles */}
+          <div className="squareContainer">
+            {Object.entries(savedPlatforms).map(([id, platform], idx) => (
+              <div
+                key={id}
+                className="square"
+                style={{ top: `${260 + idx * 50}px`, left: '185px' }}
+                onClick={() => openLink(id)} // Click handler to open link
+              >
+                <span>{platform}</span> {/* Centered link text */}
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </div>
+            ))}
+          </div>
         </div>
         {showEditProfile && <ProfileDetails />}
-        {showEditLink && <div className="rightSide">
-          <div className="rowUp">
-            <div className='subRow1'>
-              <p>Customize your links</p>
-              <p>Add/edit/remove links below and then share all your profiles with the world!</p>
-            </div>
-            <div className='subRow2'>
-              <div onClick={handleAddLink} className={`publish ${newLinks.length >= 4 ? 'disabled' : ''}`}>
-                <span>+ Add new link</span>
+        {showEditLink && (
+          <div className="rightSide">
+            <div className="rowUp">
+              <div className='subRow1'>
+                <p>Customize your links</p>
+                <p>Add/edit/remove links below and then share all your profiles with the world!</p>
               </div>
-              {!hasLinks && (
-                <div id='welcomePage' className="welcomePage">
-                  <div className="content">
-                    <div className="vector">
-                      <img src={startVector} alt="Start Vector" />
-                    </div>
-                    <div className="message">
-                      <p>Let’s get you started</p>
-                      <p>Use the “Add new link” button to get started. Once you have more than one link, you can reorder and edit them. We’re here to help you share your profiles with everyone!</p>
+              <div className='subRow2'>
+                <div onClick={handleAddLink} className={`publish ${newLinks.length >= 5 ? 'disabled' : ''}`}>
+                  <span>+ Add new link</span>
+                </div>
+                {!hasLinks && (
+                  <div id='welcomePage' className="welcomePage">
+                    <div className="content">
+                      <div className="vector">
+                        <img src={startVector} alt="Start Vector" />
+                      </div>
+                      <div className="message">
+                        <p>Let’s get you started</p>
+                        <p>Use the “Add new link” button to get started. Once you have more than one link, you can reorder and edit them. We’re here to help you share your profiles with everyone!</p>
+                      </div>
                     </div>
                   </div>
+                )}
+                <div className='linksContainer'>
+                  {newLinks.map((link) => (
+                    <NewLink
+                      key={link.id}
+                      index={link.id}
+                      removeLink={handleRemoveLink}
+                      onPlatformChange={handlePlatformChange}
+                    />
+                  ))}
                 </div>
-              )}
-              <div className='linksContainer'>
-                {newLinks.map((_, index) => (
-                  <NewLink
-                    key={index}
-                    index={index}
-                    removeLink={handleRemoveLink}
-                    onPlatformChange={handlePlatformChange}
-                  />
-                ))}
+              </div>
+            </div>
+            <div className="rowDown">
+              <div className='rectangle'></div>
+              <div className="saveBox">
+                <button disabled={!hasLinks} onClick={handleSave}>Save</button>
               </div>
             </div>
           </div>
-          <div className="rowDown">
-            <div className='rectangle'></div>
-            <div className="saveBox">
-              <button disabled={!hasLinks}>Save</button> {/* Disable if no links */}
-            </div>
-          </div>
-        </div>}
+        )}
       </div>
     </div>
-  )
+  );
 };
 
 export default Dashboard;

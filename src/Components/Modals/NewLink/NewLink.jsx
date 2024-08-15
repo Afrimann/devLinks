@@ -4,11 +4,18 @@ import LinkVector from '../../Images/linkVector.svg';
 
 const NewLink = ({ index, removeLink, onPlatformChange }) => {
   const [platform, setPlatform] = useState('');
+  const [link, setLink] = useState('');
 
   const handlePlatformChange = (e) => {
     const selectedPlatform = e.target.value;
     setPlatform(selectedPlatform);
-    onPlatformChange(index, selectedPlatform); // Pass platform value to the parent
+    onPlatformChange(index, selectedPlatform, link); // Pass platform value and link to the parent
+  };
+
+  const handleLinkChange = (e) => {
+    const newLink = e.target.value;
+    setLink(newLink);
+    onPlatformChange(index, platform, newLink); // Pass platform value and new link to the parent
   };
 
   return (
@@ -24,15 +31,24 @@ const NewLink = ({ index, removeLink, onPlatformChange }) => {
         <form>
           <div>
             <label htmlFor="platform">Platform</label>
-            <select name="platform" id="platform" onChange={handlePlatformChange}>
-              <option value="Select Platform">Select Platform</option>
+            <select name="platform" id="platform" value={platform} onChange={handlePlatformChange}>
+              <option value="">Select Platform</option>
               <option value="Github">Github</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="Twitter">Twitter</option>
               {/* Add more options as needed */}
             </select>
           </div>
           <div>
             <label htmlFor="link">Link</label>
-            <input type="text" name="link" id="link" placeholder='e.g https://www.github.com/afrimann' />
+            <input
+              type="text"
+              name="link"
+              id="link"
+              placeholder='e.g https://www.github.com/afrimann'
+              value={link}
+              onChange={handleLinkChange} // Update link value
+            />
           </div>
         </form>
       </div>
