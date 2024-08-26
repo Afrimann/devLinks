@@ -1,0 +1,104 @@
+.profile-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.profile-picture {
+    height: 150px;
+    width: 100%;
+    background-color: #FAFAFA;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 0 20px;
+}
+
+.profile-picture-content {
+    display: flex;
+    gap: 100px;
+    align-items: center;
+    /* justify-content: space-between; */
+    width: 100%;
+}
+
+.profile-picture-content .text {
+    flex-shrink: 0; /* Prevent shrinking of the text */
+    font-family: 'Instrument Sans';
+}
+
+.profile-picture-content .picture {
+    display: flex;
+    flex-grow: 1; /* Allow the picture section to grow and take available space */
+    justify-content: flex-end; /* Align the picture content to the right */
+}
+
+.upload {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.upload .image{
+    height: 130px;
+    width: 180px;
+    /* padding: 60px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #EFEBFF;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.upload .image span{
+    color: #633CFF;
+    font-family: 'Instrument Sans';
+    font-weight: 600;
+    font-size: 14px;
+
+}
+.upload-condition{
+    display: flex;
+    flex-direction: column;
+}
+.upload-condition span{
+    font-size: 12px;
+    font-family: 'Instrument Sans';
+}
+
+.user-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    height: 200px;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #FAFAFA;
+}
+
+.user-info > div{
+    width: 100%;
+}
+.user-info .info{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 150px;
+    padding-bottom: 15px;
+}
+.info label{
+    width: 20%;
+}
+.user-info .info input{
+    width: 80%;
+    height: 40px;
+    /* width: 250px; */
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid grey;
+}

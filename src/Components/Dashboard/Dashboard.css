@@ -49,26 +49,38 @@
 
 
 .square {
-    position: absolute; /* Ensure positioning is relative to the phone mockup */
-    background-color: black; /* Set background color to black */
-    color: white; /* Set text color to white */
-    display: flex; /* Use flexbox for centering */
-    align-items: center; /* Vertically center items */
-    justify-content: space-between; /* Space between items */
-    padding: 0 10px; /* Add some padding */
-    border-radius: 5px; /* Optional: Add rounded corners */
-    height: 33px; /* Match height from the previous example */
-    width: 180px; /* Match width from the previous example */
+    position: absolute;
+    /* Ensure positioning is relative to the phone mockup */
+    background-color: black;
+    /* Set background color to black */
+    color: white;
+    /* Set text color to white */
+    display: flex;
+    /* Use flexbox for centering */
+    align-items: center;
+    /* Vertically center items */
+    justify-content: space-between;
+    /* Space between items */
+    padding: 0 10px;
+    /* Add some padding */
+    border-radius: 5px;
+    /* Optional: Add rounded corners */
+    height: 33px;
+    /* Match height from the previous example */
+    width: 180px;
+    /* Match width from the previous example */
     cursor: pointer;
     font-family: 'Instrument Sans';
-  }
-  
-  /* Style for the right arrow */
-  .square ion-icon {
-    width: 16px; /* Adjust width as needed */
-    height: 16px; /* Adjust height as needed */
-  }
-  
+}
+
+/* Style for the right arrow */
+.square ion-icon {
+    width: 16px;
+    /* Adjust width as needed */
+    height: 16px;
+    /* Adjust height as needed */
+}
+
 
 /* Right-side styling */
 .rightSide {
@@ -137,15 +149,17 @@
     font-size: 16px;
     line-height: 24px;
 }
+
 .subRow2 .publish.disabled {
     cursor: not-allowed;
     opacity: 0.5;
-  }
+}
+
 .rightSide .subRow2 .publish:hover:not(:disabled) {
     background-color: #EFEBFF;
 }
 
-  
+
 /* Welcome page styling inside subRow2 */
 .subRow2 .welcomePage {
     background-color: #FAFAFA;
@@ -228,17 +242,25 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
+
 .saveBox button:disabled {
-    background-color: #cccccc; /* Gray background */
-    color: #666666; /* Darker gray text */
-    cursor: not-allowed; /* Change cursor to indicate it's disabled */
-    opacity: 0.6; /* Reduce opacity */
-    border: none; /* Remove border (optional) */
-  }
+    background-color: #cccccc;
+    /* Gray background */
+    color: #666666;
+    /* Darker gray text */
+    cursor: not-allowed;
+    /* Change cursor to indicate it's disabled */
+    opacity: 0.6;
+    /* Reduce opacity */
+    border: none;
+    /* Remove border (optional) */
+}
+
 .saveBox button:hover:not(:disabled) {
-    background-color: #737373; /* Darker green on hover, but only if not disabled */
-  }
-  
+    background-color: #737373;
+    /* Darker green on hover, but only if not disabled */
+}
+
 
 /* New Links Container */
 .newLinksContainer {

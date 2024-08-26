@@ -21,7 +21,7 @@ const Dashboard = () => {
     // Save savedPlatforms to local storage
     localStorage.setItem('savedPlatforms', JSON.stringify(savedPlatforms));
     navigate('/preview', {
-      state : {}
+      state: {}
     })// Navigate to the preview component
   };
 
@@ -32,23 +32,39 @@ const Dashboard = () => {
   };
 
   const handleRemoveLink = (id) => {
+    // Filter out the link to be removed
     const updatedLinks = newLinks.filter(link => link.id !== id);
-    setNewLinks(updatedLinks);
-
-    const updatedPlatforms = { ...platforms };
-    delete updatedPlatforms[id];
+    
+    // Re-index the remaining links
+    const reIndexedLinks = updatedLinks.map((link, index) => ({ ...link, id: index }));
+  
+    // Update state with re-indexed links
+    setNewLinks(reIndexedLinks);
+  
+    // Update platforms and savedPlatforms
+    const updatedPlatforms = {};
+    const updatedSavedPlatforms = {};
+  
+    reIndexedLinks.forEach((link, index) => {
+      if (platforms[link.id]) {
+        updatedPlatforms[index] = platforms[link.id];
+      }
+      if (savedPlatforms[link.id]) {
+        updatedSavedPlatforms[index] = savedPlatforms[link.id];
+      }
+    });
+  
     setPlatforms(updatedPlatforms);
-
-    const updatedSavedPlatforms = { ...savedPlatforms };
-    delete updatedSavedPlatforms[id];
     setSavedPlatforms(updatedSavedPlatforms);
-
-    // Remove link from links state
-    const updatedLinksState = { ...links };
-    delete updatedLinksState[id];
-    setLinks(updatedLinksState);
+    setLinks((prevLinks) => {
+      const updatedLinksState = {};
+      reIndexedLinks.forEach((link, index) => {
+        updatedLinksState[index] = prevLinks[link.id];
+      });
+      return updatedLinksState;
+    });
   };
-
+  
   const handlePlatformChange = (id, platform, link) => {
     setPlatforms((prev) => ({ ...prev, [id]: platform }));
     setLinks((prev) => ({ ...prev, [id]: link })); // Store the link
@@ -56,6 +72,9 @@ const Dashboard = () => {
 
   const handleSave = () => {
     const platformsToSave = newLinks.reduce((acc, link) => {
+      if (!platforms[link.id]) {
+        alert('Please Select a Platform')
+      }
       if (platforms[link.id]) {
         acc[link.id] = platforms[link.id]; // Save only if platform is defined
       }
@@ -93,7 +112,7 @@ const Dashboard = () => {
   return (
     <div className='dashboard'>
       <div className="header">
-        <Header showProfile={showProfile} showLink={showLink} handlePreview = {handlePreview}/>
+        <Header showProfile={showProfile} showLink={showLink} handlePreview={handlePreview} />
       </div>
       <div className="dashboardContainer">
         <div className="leftSide">
@@ -153,7 +172,11 @@ const Dashboard = () => {
             <div className="rowDown">
               <div className='rectangle'></div>
               <div className="saveBox">
-                <button disabled={!hasLinks} onClick={handleSave}>Save</button>
+                <button
+                  disabled={!hasLinks}
+                  onClick={handleSave}>
+                  Save
+                </button>
               </div>
             </div>
           </div>

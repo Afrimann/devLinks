@@ -8,10 +8,7 @@ const Header = ({ showProfile, showLink, handlePreview }) => {
     const [isLinkActive, setIsLinkActive] = useState(true)
     const [isProfileActive, setIsProfileActive] = useState(false)
     const navigate = useNavigate()
-
-    // useEffect(() => {
-    //     setIsActive(true)
-    // }, [])
+    
     const handleProfileActive = () => {
         setIsLinkActive(false)
         setIsProfileActive(true)
@@ -20,10 +17,7 @@ const Header = ({ showProfile, showLink, handlePreview }) => {
         setIsProfileActive(false)
         setIsLinkActive(true)
     }
-    // const handlePreviewNavigate = () => {
-    //     navigate('/preview',{
-    //         state : {platforms,savedPlatforms,links}
-    //     })
+
     
     return (
         <div className='header'>
